@@ -3,6 +3,7 @@
 ## usage
 - building and running: `make && ./gol`<br>
 	- dependencies: SDL2
+	- tested on debian 10
 
 - using the simulation:
 	- `space` to pause/resume simulation
