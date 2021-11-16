@@ -7,4 +7,4 @@
 - using the simulation:
 	- `space` to pause/resume simulation
 	- left click on cells to toggle alive/dead (black = alive, white = dead)
-
+![screen-gif](./imgs/2021-11-15 18-17-23_Trim.gif)
