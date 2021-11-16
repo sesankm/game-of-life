@@ -1,9 +1,10 @@
 # Conway's Game of Life
 ---
 ## usage
-`make`<br>
-`./gol`<br>
+- building and running: `make && ./gol`<br>
+	- dependencies: SDL2
 
-- `space` to pause/resume simulation
-- click on cells to toggle alive/dead (black = alive, white = dead)
+- using the simulation:
+	- `space` to pause/resume simulation
+	- left click on cells to toggle alive/dead (black = alive, white = dead)
 
