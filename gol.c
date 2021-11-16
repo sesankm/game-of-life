@@ -3,11 +3,11 @@
 #include <unistd.h>
 #include <SDL2/SDL.h>
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH 900
+#define SCREEN_HEIGHT 900
 
-#define GRID_ROWS 25
-#define GRID_COLS 25
+#define GRID_ROWS 50
+#define GRID_COLS 50
 #define CELL_WIDTH (SCREEN_WIDTH / GRID_ROWS)
 #define CELL_HEIGHT (SCREEN_HEIGHT / GRID_COLS)
 
@@ -46,13 +46,22 @@ void draw_grid(SDL_Renderer* renderer){
 
 void render_cells(SDL_Renderer* renderer){
 	for(int row = 0; row < GRID_ROWS; row++){
-		for(int col = 0; col < GRID_ROWS; col++){
+		for(int col = 0; col < GRID_COLS; col++){
 			if(cells[row][col] > 0){
 				draw_sq(renderer, row * CELL_WIDTH, col * CELL_HEIGHT, CELL_WIDTH, 30, 30, 30);
 			}
 		}
 	}
 }
+
+void randomize(){
+	int num_cells_to_change = GRID_ROWS * GRID_COLS / 4;
+	for(int i = 0; i < num_cells_to_change; i++){
+		int rand_row = rand() % GRID_ROWS, rand_col = rand() % GRID_COLS;
+		cells[rand_row][rand_col] = !cells[rand_row][rand_col];
+	}
+}
+
 
 /* Rules
  * Live cells 2 or 3 live neighbors live
@@ -136,6 +145,7 @@ int main(int argc, char** argv){
 	init_cells();
 	int quit = 0;
 	int play = 0;
+	// randomize();
 
 	while(!quit){
 		SDL_Event event;
@@ -150,6 +160,8 @@ int main(int argc, char** argv){
 			case SDL_KEYDOWN:
 				if(event.key.keysym.sym == SDLK_SPACE)
 					play = !play;
+				if(event.key.keysym.sym == SDLK_r)
+					randomize();
 			}
 		}
 		SDL_SetRenderDrawColor(renderer, 230, 230, 230, 255);
